@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.myhotel.R
 import com.example.myhotel.data.model.Hotel
 
-class HotelAdapter : RecyclerView.Adapter<HotelAdapter.HotelViewHolder>() {
+class HotelAdapter(private val onItemClick: (Hotel) -> Unit) : RecyclerView.Adapter<HotelAdapter.HotelViewHolder>()  {
 
     private var hotels: List<Hotel> = ArrayList()
 
@@ -24,6 +24,10 @@ class HotelAdapter : RecyclerView.Adapter<HotelAdapter.HotelViewHolder>() {
     override fun onBindViewHolder(holder: HotelViewHolder, position: Int) {
         val hotel = hotels[position]
         holder.bind(hotel)
+        holder.itemView.setOnClickListener {
+            onItemClick(hotel)
+        }
+
     }
 
     override fun getItemCount(): Int {

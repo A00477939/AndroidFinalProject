@@ -12,6 +12,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.myhotel.R
 import com.example.myhotel.ViewModel.HotelViewModel
 import com.example.myhotel.ui.adapter.HotelAdapter
+import com.example.myhotel.ui.fragment.GuestDetailFragment
+import com.example.myhotel.ui.fragment.ReservationFragment
 
 class HotelFragment : Fragment() {
 
@@ -36,7 +38,26 @@ class HotelFragment : Fragment() {
         // RecyclerView setup
         val recyclerView: RecyclerView = view.findViewById(R.id.recycler_view)
         recyclerView.layoutManager = LinearLayoutManager(activity)
-        hotelAdapter = HotelAdapter()
+        hotelAdapter = HotelAdapter { clickedHotel ->
+            // Handle item click here
+            val bundle = Bundle().apply {
+                putParcelable("clickedHotel", clickedHotel) // Pass the clicked hotel data to the next fragment
+            }
+//            val nextFragment = GuestDetailFragment()
+//            nextFragment.arguments = bundle
+//            requireActivity().supportFragmentManager.beginTransaction()
+//                .replace(R.id.listOfHotel, nextFragment)
+//                .addToBackStack(null)
+//                .commit()
+
+            val fragmentTransaction = requireActivity().supportFragmentManager.beginTransaction()
+            val fragment = GuestDetailFragment()
+            fragment.arguments = bundle
+            fragmentTransaction.replace(R.id.firstscreen, fragment)
+            fragmentTransaction.addToBackStack(null)
+            fragmentTransaction.commit()
+        }
+
         recyclerView.adapter = hotelAdapter
 
         // ViewModel setup
