@@ -28,11 +28,7 @@ class ReservationFragment : Fragment() {
             .asGif()
             .load(R.drawable.refund)
             .into(gif) // Specify the target view
-
-
-
         return view
-
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

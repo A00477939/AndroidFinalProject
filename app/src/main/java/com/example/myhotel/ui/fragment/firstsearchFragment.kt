@@ -11,7 +11,6 @@ import android.widget.EditText
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.example.myhotel.R
-import com.example.myhotel.ui.fragment.ReservationFragment
 import java.util.*
 
 class firstsearchFragment : Fragment() {
@@ -22,6 +21,9 @@ class firstsearchFragment : Fragment() {
     private lateinit var guestNumber: EditText
     private lateinit var searchButton: Button
     private lateinit var sharedPreferences: SharedPreferences
+    private lateinit var check_in_date: Button
+    private lateinit var check_out_date: Button
+
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
@@ -37,6 +39,8 @@ class firstsearchFragment : Fragment() {
         searchButton = view.findViewById(R.id.btn_search)
         userName = view.findViewById(R.id.edit_name)
         guestNumber = view.findViewById(R.id.edit_guests)
+        check_in_date = view.findViewById(R.id.startdate)
+        check_out_date = view.findViewById(R.id.enddate)
 
         // Initialize SharedPreferences
         sharedPreferences = requireActivity().getSharedPreferences("MyHotelPrefs", Context.MODE_PRIVATE)
@@ -44,6 +48,8 @@ class firstsearchFragment : Fragment() {
         // Retrieve user name and guest number from SharedPreferences
         userName.setText(sharedPreferences.getString("userName", ""))
         guestNumber.setText(sharedPreferences.getString("guestNumber", ""))
+        check_in_date.setText(sharedPreferences.getString("check in date", ""))
+       check_out_date.setText(sharedPreferences.getString("check out date", ""))
 
         // Set OnClickListener for start date button
         startDateButton.setOnClickListener {
@@ -61,6 +67,8 @@ class firstsearchFragment : Fragment() {
             val editor = sharedPreferences.edit()
             editor.putString("userName", userName.text.toString())
             editor.putString("guestNumber", guestNumber.text.toString())
+            editor.putString("check in date", check_in_date.text.toString())
+            editor.putString("check out date", check_out_date.text.toString())
             editor.apply()
 
             // Show Toast message indicating that data is saved
@@ -68,7 +76,7 @@ class firstsearchFragment : Fragment() {
 
             // Open firstsearchFragment on search button click
             val fragmentTransaction = requireActivity().supportFragmentManager.beginTransaction()
-            val fragment = ReservationFragment() // Assuming SearchResultFragment is the fragment you want to open
+            val fragment = HotelFragment() // Assuming SearchResultFragment is the fragment you want to open
             fragmentTransaction.replace(R.id.firstscreen, fragment)
             fragmentTransaction.addToBackStack(null) // This line will add the fragment to back stack
             fragmentTransaction.commit()

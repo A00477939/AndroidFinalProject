@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginTop="10dp"
@@ -21,7 +21,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/location"
+            android:id="@+id/Availability"
             android:layout_below="@id/name"
             android:textColor="@color/black"
             android:textSize="25sp"
@@ -31,7 +31,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/price"
-            android:layout_below="@id/location"
+            android:layout_below="@id/Availability"
             android:textSize="15sp"
             android:textColor="@color/black"
             tools:text="Price"/>
@@ -44,4 +44,4 @@
             android:background="#DAD8D8"/>
     </RelativeLayout>
 
-</FrameLayout>
+</LinearLayout>
