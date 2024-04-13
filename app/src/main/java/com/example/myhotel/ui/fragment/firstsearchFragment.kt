@@ -11,6 +11,7 @@ import android.widget.EditText
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.example.myhotel.R
+import com.example.myhotel.ui.activity.MainActivity
 import java.util.*
 
 class firstsearchFragment : Fragment() {
@@ -61,8 +62,8 @@ class firstsearchFragment : Fragment() {
             showDatePicker(endDateButton)
         }
 
-        // Set OnClickListener for search button
         searchButton.setOnClickListener {
+
             // Save user name and guest number to SharedPreferences
             val editor = sharedPreferences.edit()
             editor.putString("userName", userName.text.toString())
@@ -73,13 +74,8 @@ class firstsearchFragment : Fragment() {
 
             // Show Toast message indicating that data is saved
             Toast.makeText(requireContext(), "User name and guest number saved!", Toast.LENGTH_SHORT).show()
+            (requireActivity() as? MainActivity)?.replaceFragment(HotelFragment())
 
-            // Open firstsearchFragment on search button click
-            val fragmentTransaction = requireActivity().supportFragmentManager.beginTransaction()
-            val fragment = HotelFragment() // Assuming SearchResultFragment is the fragment you want to open
-            fragmentTransaction.replace(R.id.firstscreen, fragment)
-            fragmentTransaction.addToBackStack(null) // This line will add the fragment to back stack
-            fragmentTransaction.commit()
         }
     }
 

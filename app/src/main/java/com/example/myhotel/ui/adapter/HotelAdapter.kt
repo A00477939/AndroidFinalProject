@@ -29,7 +29,6 @@ class HotelAdapter(private val onItemClick: (Hotel) -> Unit) : RecyclerView.Adap
         }
 
     }
-
     override fun getItemCount(): Int {
         return hotels.size
     }
